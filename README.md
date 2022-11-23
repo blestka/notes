@@ -3,7 +3,7 @@
 ## API provides the following endpoints:
 
 
-POST /api/v1/notes - note creation endpoint
+### POST /api/v1/notes - note creation endpoint
 
 Request body example:
 
@@ -24,7 +24,7 @@ Response example
 "text": "this is my awesome note"
 }
 
-GET /api/v1/notes/<note_id> - get note endpoint, secured with basic authentication
+### GET /api/v1/notes/<note_id> - get note endpoint, secured with basic authentication
 
 Request should contain basic authorization header, e.g. "Authorization: Basic YjM3NmUwMTctZDMwZC00NjA1LThiNDUtYWI3NWYyNzQ1YjkxOmFiYw==
 "
