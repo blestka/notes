@@ -1,4 +1,4 @@
-create schema notes;
+create schema if not exists notes;
 use notes;
 create table notes
 (

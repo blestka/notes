@@ -1,0 +1,44 @@
+version: "3.9"
+services:
+  mysql1:
+    image: mysql:latest
+    container_name: mysql1
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_USER: notesuser
+      MYSQL_PASSWORD: notespwd
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: notes
+  notes-api:
+    container_name: notes-api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    restart: always
+    command:
+      - '/bin/sh'
+      - '-c'
+      - '/bin/sleep 15 && /prog "first argument"'
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: [ "CMD", "wget", "-O", "-", "http://localhost:8080/health" ]
+      start_period: 1m
+      interval: 30s
+      retries: 3
+      timeout: 10s
+    depends_on:
+      - flyway
+      - mysql1
+  flyway:
+    image: flyway/flyway
+    command: -url=jdbc:mysql://mysql1:3306/notes -user=root -password=root -connectRetries=60 migrate
+    volumes:
+      - ./sql:/flyway/sql
+    depends_on:
+      - mysql1
+networks:
+  default:
+    name: notes-net
