@@ -35,5 +35,5 @@ jobs:
     steps:
       - name: Dump GitHub context
         id: github__event_context_step
-        run: echo '${{ toJSON(github.sha) }}'
+        run: echo '${{ toJSON(github.event.head.sha) }}'
 
