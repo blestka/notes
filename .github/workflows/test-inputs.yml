@@ -7,11 +7,12 @@ on:
         default: "my input value"
       myInput2:
         required: false
-        description: "Test1"
-        default: ${{ inputs.myInput1 }}
+        description: "Test2"
 jobs:
   myJob:
     runs-on: ubuntu-latest
     steps:
       - name: Output Inputs
         run: echo "${{ toJSON(github.event.inputs) }}"
+      - name: Output conditionally
+        run: echo "${{if (${{inputs.myInput2}})}}${{inputs.myInput2}}${{else}}${{inputs.myInput1}}${{endif}}"
