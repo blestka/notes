@@ -1,0 +1,17 @@
+on:
+  workflow_dispatch:
+    inputs:
+      myInput1:
+        required: true
+        description: "Test1"
+        default: "my input value"
+      myInput2:
+        required: false
+        description: "Test1"
+        default: ${{ inputs.myInput1 }}
+jobs:
+  myJob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Output Inputs
+        run: echo "${{ toJSON(github.event.inputs) }}"
