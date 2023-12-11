@@ -15,4 +15,4 @@ jobs:
       - name: Output Inputs
         run: echo "${{ toJSON(github.event.inputs) }}"
       - name: Output conditionally
-        run: echo "${{if ( inputs.myInput2 != '' )}}${{inputs.myInput2}}${{else}}${{inputs.myInput1}}${{endif}}"
+        run: echo "${{ inputs.myInput2 != '' && inputs.myInput2 || inputs.myInput1 }}"
