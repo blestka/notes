@@ -8,6 +8,9 @@ on:
       myInput2:
         required: false
         description: "Test2"
+env:
+  ACCOUNT_NUMBER: "number_from_job"
+
 jobs:
   myJob:
     runs-on: ubuntu-latest
