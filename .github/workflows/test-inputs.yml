@@ -25,5 +25,5 @@ jobs:
   myJobThatCallsAnotherWorkflow:
     uses: blestka/url-shortener-api/.github/workflows/test-wf.yml@main
     with:
-      env_var: $ACCOUNT_NUMBER
+      env_var: ${{ env.ACCOUNT_NUMBER }}
       environment: development
