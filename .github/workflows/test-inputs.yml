@@ -20,7 +20,7 @@ jobs:
       - name: Output conditionally
         run: echo "${{ inputs.myInput2 != '' && inputs.myInput2 || inputs.myInput1 }}"
   myJobThatCallsAnotherWorkflow:
-    uses: blestka/url-shortener-api/blob/main/.github/workflows/test-wf.yml@main
+    uses: blestka/url-shortener-api/.github/workflows/test-wf.yml@main
     with:
       env_var: ${{ vars.ACCOUNT_NUMBER }}
       environment: development
