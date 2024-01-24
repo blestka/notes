@@ -11,8 +11,11 @@ on:
 jobs:
   myJob:
     runs-on: ubuntu-latest
+    environment: development
     steps:
       - name: Output Inputs
         run: echo "${{ toJSON(github.event.inputs) }}"
+      - name: Output Environment
+        run: echo "${{ toJSON(vars.ACCOUNT_NUMBER) }}"
       - name: Output conditionally
         run: echo "${{ inputs.myInput2 != '' && inputs.myInput2 || inputs.myInput1 }}"
